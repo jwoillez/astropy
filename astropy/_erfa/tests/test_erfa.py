@@ -167,3 +167,16 @@ def test_structs():
     ri, di = erfa.atciqz(2.71, 0.174, am[0])
     np.testing.assert_allclose(ri, 2.709994899247599271)
     np.testing.assert_allclose(di, 0.1728740720983623469)
+
+
+def test_chars():
+    """
+    Checks for methods using char types.
+    """
+
+    # Test handling of leap second on 30 June 2015
+    iy, im, id, ihmsf = erfa.d2dtf('UTC', 1, 2400000.5, 57203.5)
+    assert ihmsf[3] == 5
+    iy, im, id, ihmsf = erfa.d2dtf('TAI', 1, 2400000.5, 57203.5)
+    assert ihmsf[3] == 0
+
