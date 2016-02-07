@@ -174,9 +174,16 @@ def test_chars():
     Checks for methods using char types.
     """
 
-    # Test handling of leap second on 30 June 2015
+    # Test handling of leap second on 30 June 2015, only for 'UTC' scale
     iy, im, id, ihmsf = erfa.d2dtf('UTC', 1, 2400000.5, 57203.5)
     assert ihmsf[3] == 5
     iy, im, id, ihmsf = erfa.d2dtf('TAI', 1, 2400000.5, 57203.5)
     assert ihmsf[3] == 0
 
+    # Test ataf and a2tf
+    sign, idmsf = erfa.a2af(6, -np.pi)
+    assert sign == '-'
+    assert (idmsf == [180,0,0,0]).all()
+    sign, ihmsf = erfa.a2tf(6, np.pi)
+    assert sign == '+'
+    assert (ihmsf == [12,0,0,0]).all()
