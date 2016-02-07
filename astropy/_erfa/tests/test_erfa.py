@@ -182,8 +182,8 @@ def test_chars():
 
     # Test ataf and a2tf
     sign, idmsf = erfa.a2af(6, -np.pi)
-    assert sign == '-'
+    assert sign == b'-'
     assert (idmsf == [180,0,0,0]).all()
     sign, ihmsf = erfa.a2tf(6, np.pi)
-    assert sign == '+'
+    assert sign == b'+'
     assert (ihmsf == [12,0,0,0]).all()
